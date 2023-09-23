@@ -6,6 +6,8 @@ import 'package:handicrafts_flutter_app/screens/login_page.dart';
 import 'package:handicrafts_flutter_app/screens/login_register_screen.dart';
 import 'package:handicrafts_flutter_app/screens/out_boarding_screen.dart';
 import 'package:handicrafts_flutter_app/screens/register_page.dart';
+import 'package:handicrafts_flutter_app/screens/reset_forgot_password.dart';
+import 'package:handicrafts_flutter_app/screens/verification_code_screen.dart';
 import 'package:handicrafts_flutter_app/utils/constants.dart';
 
 void main() {
@@ -61,6 +63,8 @@ class MyApp extends StatelessWidget {
       '/login_register_screen': (context) => const LoginRegisterScreen(),
       '/login_page': (context) => const LoginPage(),
       '/register_page': (context) => const RegisterPage(),
+      '/verification_code_screen': (context) => const VerificationCodeScreen(),
+      '/reset_password_screen': (context) => const ResetPasswordScreen(),
     };
   }
 

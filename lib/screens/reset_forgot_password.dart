@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:handicrafts_flutter_app/widgets/app_button.dart';
 import 'package:handicrafts_flutter_app/widgets/app_text_field.dart';
+import 'package:handicrafts_flutter_app/widgets/small_text.dart';
 import 'package:handicrafts_flutter_app/widgets/text_label.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -42,30 +45,30 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         child: Stack(children: [
           Image.asset('assets/images/bg_screens.png'),
           Padding(
-            padding: const EdgeInsets.all(15),
+            padding: EdgeInsets.all(15.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 30.h,
                 ),
-                const Row(
+                Row(
                   children: [
-                    Icon(Icons.arrow_back),
+                    const Icon(Icons.arrow_back),
                     SizedBox(
-                      width: 8,
+                      width: 8.w,
                     ),
-                    Text('إعادة تعيين كلمة المرور'),
+                    const SmallText(text: 'إعادة تعيين كلمة المرور',size: 16,),
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 30.h,
                 ),
                 Container(
                     alignment: AlignmentDirectional.center,
                     child:
                     SvgPicture.asset('assets/images/reset_password.svg')),
-                const SizedBox(height: 70),
+                SizedBox(height: 70.h),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Form(
@@ -80,7 +83,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           suffixIcon: Icons.remove_red_eye_outlined,
                           obscureText: true,
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12.h),
                         const TextLabel(
                             icon: "assets/icons/password.svg",
                             label: 'تأكيد كلمة المرور',
@@ -90,14 +93,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           suffixIcon: Icons.remove_red_eye_outlined,
                           obscureText: true,
                         ),
-                        const SizedBox(height: 40),
+                        SizedBox(height: 40.h),
                         AppButton(
                           onPressed: () {
                             performResetPassword();
                           },
                           text: 'حفظ',
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                       ],
                     ),
                   ),
@@ -111,11 +114,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   performResetPassword() async {
-/*
     if (checkData()) {}
-*/
   }
-/*
   bool checkData() {
     if (_newPasswordController.text.isEmpty
         || _confirmedNewPasswordController.text.isEmpty) {
@@ -128,5 +128,4 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     }
     return true;
   }
-*/
 }

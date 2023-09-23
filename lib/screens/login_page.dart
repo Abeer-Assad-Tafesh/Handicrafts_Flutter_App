@@ -18,9 +18,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late TextEditingController _emailController;
-  late TextEditingController _forgetEmailController;
+  late TextEditingController _forgetPhoneNumController;
   late TextEditingController _passwordController;
-  late String _forgetEmail;
   bool _obscurePassword = true;
 
   @override
@@ -29,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _forgetEmailController = TextEditingController();
+    _forgetPhoneNumController = TextEditingController();
   }
 
   @override
@@ -37,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement dispose
     _emailController.dispose();
     _passwordController.dispose();
-    _forgetEmailController.dispose();
+    _forgetPhoneNumController.dispose();
     super.dispose();
   }
 
@@ -51,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
             Image.asset('assets/images/bg_screens.png',
                 width: double.infinity, fit: BoxFit.cover),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0).w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -71,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey),
                   SizedBox(height: 10.h),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0).w,
                     child: Column(
                       children: [
                         const TextLabel(
@@ -82,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _emailController,
                           textInputField: TextInputType.emailAddress,
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12.h),
                         const TextLabel(
                           icon: "assets/icons/password.svg",
                           label: 'كلمة المرور',
@@ -117,18 +116,18 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         AppButton(
                           onPressed: () {
                             login();
                           },
                           text: 'تسجيل الدخول',
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         InkWell(
                           child: SmallText(
                             text: 'هل نسيت كلمة المرور ؟',
-                            size: 14,
+                            size: 14.sp,
                             color: kPrimaryColor,
                             decoration: TextDecoration.underline,
                           ),
@@ -138,14 +137,14 @@ class _LoginPageState extends State<LoginPage> {
                                 builder: (BuildContext context) {
                                   return AlertDialog(
                                     scrollable: true,
-                                    insetPadding: const EdgeInsets.all(10),
-                                    shape: const RoundedRectangleBorder(
+                                    insetPadding: const EdgeInsets.all(10).w,
+                                    shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
+                                            const Radius.circular(10.0).r)),
                                     content: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(8.0).w,
                                       child: Container(
-                                        margin: const EdgeInsets.all(10.0),
+                                        margin: const EdgeInsets.all(10.0).w,
                                         width: 400.w,
                                         child: Column(
                                           children: [
@@ -153,37 +152,33 @@ class _LoginPageState extends State<LoginPage> {
                                               children: [
                                                 BigText(
                                                   text: 'نسيت كلمة المرور',
-                                                  size: 18,
+                                                  size: 18.sp,
                                                   color: kPrimaryColor,
                                                   fontWeight: FontWeight.bold,
                                                 ),
-                                                const SmallText(
+                                                SmallText(
                                                     text:
                                                         'سيتم إرسال رمز التحقق',
-                                                    size: 13,
+                                                    size: 13.sp,
                                                     color: Colors.black),
-                                                const SizedBox(height: 15),
+                                                SizedBox(height: 15.h),
                                                 const TextLabel(
                                                   icon:
-                                                      "assets/icons/email.svg",
-                                                  label: 'الإيميل',
+                                                      "assets/icons/call.svg",
+                                                  label: 'رقم الجوال',
                                                 ),
                                                 AppTextField(
                                                   controller:
-                                                      _forgetEmailController,
+                                                      _forgetPhoneNumController,
                                                 ),
-                                                const SizedBox(height: 30),
+                                                SizedBox(height: 30.h),
                                                 AppButton(
-                                                  onPressed: () async {
-                                                    if (_forgetEmail
-                                                        .isNotEmpty) {
-                                                      await forgetPassword(
-                                                          context);
-                                                    }
+                                                  onPressed: () {
+                                                    forgetPassword(context);
                                                   },
                                                   text: 'تحقق الآن',
-                                                  height: 48,
-                                                  width: 250,
+                                                  height: 48.h,
+                                                  width: 250.w,
                                                 ),
                                               ],
                                             ),
@@ -207,7 +202,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<void> forgetPassword(BuildContext cont) async {}
+  forgetPassword(BuildContext cont) {
+    if(checkPhone()){
+      Navigator.popAndPushNamed(context, '/reset_password_screen');
+    }
+  }
 
   Future<void> login() async {
     if (checkData()) {}
@@ -215,6 +214,16 @@ class _LoginPageState extends State<LoginPage> {
 
   final RegExp regex = RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)| (\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+  final RegExp regExp = RegExp(r'(^(?:05[96])?[0-9]{7}$)');
+
+  bool checkPhone(){
+    if (_forgetPhoneNumController.text.isEmpty ||
+        !regExp.hasMatch(_forgetPhoneNumController.text)) {
+      Get.snackbar('مهلاً', 'أدخل رقم هاتف صحيح', colorText: Colors.red);
+      return false;
+    }
+    return true;
+  }
 
   bool checkData() {
     if (_emailController.text.isEmpty) {

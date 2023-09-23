@@ -58,7 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
               fit: BoxFit.cover,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     size: 18,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0.r),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         AppTextField(
                           controller: _fullNameController,
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         const TextLabel(
                           icon: "assets/icons/email.svg",
                           label: 'البريد الإلكتروني',
@@ -90,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           controller: _emailController,
                           textInputField: TextInputType.emailAddress,
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         const TextLabel(
                           icon: "assets/icons/call.svg",
                           label: 'رقم الجوال',
@@ -102,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             textInputField: TextInputType.phone,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         const TextLabel(
                           icon: "assets/icons/password.svg",
                           label: 'كلمة المرور',
@@ -137,16 +137,16 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 5),
+                        SizedBox(height: 5.h),
                         Row(
                           children: [
                             Container(
-                              width: 20,
-                              height: 20,
-                              margin: const EdgeInsets.only(left: 10),
+                              width: 20.w,
+                              height: 20.h,
+                              margin: const EdgeInsets.only(left: 10).w,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey,width: 2), // Red border
-                                borderRadius: BorderRadius.circular(0.0), // Rounded corners
+                                borderRadius: BorderRadius.circular(0.0).r, // Rounded corners
                               ),
                               child: Checkbox(
                                 value: isChecked,
@@ -167,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15.h),
                         Align(
                           alignment: Alignment.center,
                           child: AppButton(
@@ -177,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 100),
+                        SizedBox(height: 100.h),
                       ],
                     ),
                   ),

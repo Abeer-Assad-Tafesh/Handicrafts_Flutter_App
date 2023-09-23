@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:handicrafts_flutter_app/screens/reset_forgot_password.dart';
 import 'package:handicrafts_flutter_app/utils/constants.dart';
 import 'package:handicrafts_flutter_app/widgets/app_button.dart';
@@ -100,23 +102,23 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
           children: [
             Image.asset('assets/images/bg_screens.png'),
             Padding(
-              padding: const EdgeInsets.all(15),
+              padding: EdgeInsets.all(15.w),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: 30.h,
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Icon(Icons.arrow_back),
+                      const Icon(Icons.arrow_back),
                       SizedBox(
-                        width: 8,
+                        width: 8.w,
                       ),
-                      Text('رمز التحقق'),
+                      const SmallText(text:'رمز التحقق',size: 16,),
                     ],
                   ),
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: 30.h,
                   ),
                   Center(
                     child: Column(
@@ -124,26 +126,26 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                         SvgPicture.asset('assets/images/verif_code.svg'),
                         BigText(
                             text: 'أدخل رمز التحقق',
-                            size: 22,
+                            size: 22.sp,
                             color: kPrimaryColor,
                             fontWeight: FontWeight.bold),
-                        const Text(
+                        Text(
                           'تم إرسال رمز التحقق',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             color: Colors.black,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 10.h,
                         ),
                         SmallText(
                           text: '${widget.email}',
-                          size: 14,
+                          size: 14.sp,
                           color: Colors.grey,
                         ),
-                        const SizedBox(
-                          height: 30,
+                        SizedBox(
+                          height: 30.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,15 +192,15 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 60),
+                        SizedBox(height: 60.h),
                         AppButton(
                           onPressed: () {
                             checkCode();
                           },
                           text: 'تحقق الآن',
                         ),
-                        const SizedBox(
-                          height: 30,
+                        SizedBox(
+                          height: 30.h,
                         ),
                         !_timerFinished
                             ? BigText(
@@ -212,18 +214,18 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                           },
                           child: BigText(
                             text: 'أعد إرسال الكود',
-                            size: 18,
+                            size: 18.sp,
                             color: kPrimaryColor,
                             fontWeight: FontWeight.bold,
                             textDecoration: TextDecoration.underline,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 10.h,
                         ),
                         SmallText(
                           text: formatTimer(),
-                          size: 12,
+                          size: 12.sp,
                           color: Colors.grey,
                         ),
                       ],
@@ -251,10 +253,10 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
             ResetPasswordScreen(code: _code,email: widget.emailCode,)));
       } else {
-        // Get.snackbar('خطأ في كود التحقق!', 'أدخل كود التحقق الصحيح', colorText: Colors.red);
+        Get.snackbar('خطأ في كود التحقق!', 'أدخل كود التحقق الصحيح', colorText: Colors.red);
       }
     }else {
-      // Get.snackbar('خطأ!', 'أدخل كود التحقق أولاً', colorText: Colors.red);
+      Get.snackbar('خطأ!', 'أدخل كود التحقق أولاً', colorText: Colors.red);
     }
   }
 
